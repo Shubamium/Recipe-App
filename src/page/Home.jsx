@@ -11,6 +11,7 @@ import DrawerExample from "../component/DrawerExample"
 import { FaSearch} from 'react-icons/fa'
 import { useEffect, useState } from "react"
 import SearchResults from "../component/SearchResults";
+import SearchResults_Skeleton from "../component/SearchResults_Skeleton";
 import axios from "axios";
 
 async function searchMeal(query){
@@ -25,16 +26,15 @@ function Home() {
 
   const [query, setQuery] = useState('');
   const [searchParam,setSP] = useState(null);
+  const [isLoading,setIsLoading] = useState(false);
   const [foodResult, setFR] = useState(null);
-  useEffect(()=>{
-    
-  },[query]);
-  
+ 
   function handleSearch(){
     if(query === "") return;
+    setIsLoading(true);
     searchMeal(query).then((res)=>{
-      console.log(res);
       setFR(res.meals);
+      setIsLoading(false);
     });
     setSP("Showing Search Result for:" + query);
   }
@@ -45,11 +45,18 @@ function Home() {
         <Text>Welcome to TheMealDB: An open, crowd-sourced database of Recipes from around the world.</Text>
         <HStack justifyContent={'center'} margin={'2em 0'}>
           <Input placeholder="I'm looking for a recipe on how to make . . ." maxWidth={'md'} onChange={(e)=> setQuery(e.target.value)}></Input>
-          
           <Button leftIcon={<FaSearch/>} size={'sm'} variant='solid' colorScheme={"linkedin"} minWidth={'150px'} onClick={handleSearch}> Search </Button>
         </HStack>
         {searchParam}
-        {foodResult && <SearchResults results={foodResult}></SearchResults>}
+        {isLoading ? 
+        <>
+          <Text>Please Wait . . .</Text>
+          <SearchResults_Skeleton></SearchResults_Skeleton>
+        </> 
+        :  
+        <>
+         {foodResult && <SearchResults results={foodResult}></SearchResults >}
+        </>}
       </Box>
     </div>
   )
