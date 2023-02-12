@@ -45,6 +45,7 @@ function App() {
         <Text>Welcome to TheMealDB: An open, crowd-sourced database of Recipes from around the world.</Text>
         <HStack justifyContent={'center'} margin={'2em 0'}>
           <Input placeholder="I'm looking for a recipe on how to make . . ." maxWidth={'md'} onChange={(e)=> setQuery(e.target.value)}></Input>
+          
           <Button leftIcon={<FaSearch/>} size={'sm'} variant='solid' colorScheme={"linkedin"} minWidth={'150px'} onClick={handleSearch}> Search </Button>
         </HStack>
         {searchParam}
