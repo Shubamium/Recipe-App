@@ -1,19 +1,33 @@
 import { baseTheme, ChakraProvider, extendBaseTheme, extendTheme } from '@chakra-ui/react'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
 import './index.css'
+import Home from './page/Home'
 import '@fontsource/open-sans'
+
+import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from 'react-router-dom'
+import ErrorPage from './page/ErrorPage'
+
 const theme = extendTheme({
     fonts:{
       heading: `'Open Sans', sans-serif`,
       body: `'Open Sans', sans-serif`
     }
 })
+const router = createBrowserRouter(
+  [
+    {
+      path:'/',
+      element: <Home/>,
+      errorElement: <ErrorPage/>
+    }
+  ]
+);
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <ChakraProvider theme={theme}>
-    <React.StrictMode>
-      <App />
+  <React.StrictMode>
+      <ChakraProvider theme={theme}>
+        <RouterProvider router={router}>
+        </RouterProvider>
+      </ChakraProvider>
     </React.StrictMode>
-  </ChakraProvider>
 )

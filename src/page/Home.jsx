@@ -6,11 +6,11 @@ import {
   HStack,
   Input
 } from "@chakra-ui/react"
-import DrawerExample from "./component/DrawerExample"
+import DrawerExample from "../component/DrawerExample"
  
 import { FaSearch} from 'react-icons/fa'
 import { useEffect, useState } from "react"
-import SearchResults from "./component/SearchResults";
+import SearchResults from "../component/SearchResults";
 import axios from "axios";
 
 async function searchMeal(query){
@@ -21,7 +21,7 @@ async function searchMeal(query){
    
 }
 
-function App() {
+function Home() {
 
   const [query, setQuery] = useState('');
   const [searchParam,setSP] = useState(null);
@@ -55,4 +55,4 @@ function App() {
   )
 }
 
-export default App
+export default Home
