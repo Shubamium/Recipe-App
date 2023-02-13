@@ -41,18 +41,18 @@ function Home() {
   return (
     <div className="App">
       <Box as={'section'} textAlign={'center'} pt={'3em'}>
-        <Heading fontWeight={'bold'}>Welcome to TheMealDB</Heading>
-        <Text>Welcome to TheMealDB: An open, crowd-sourced database of Recipes from around the world.</Text>
+        <Heading fontWeight={'bold'} color={'white'} bg={'pink.800'} borderRadius={'1em'} p={2} px={10} display={'inline-block'}>Welcome to TheMealDB</Heading>
+        <Text my={2}>Welcome to TheMealDB: An open, crowd-sourced database of Recipes from around the world.</Text>
         <HStack justifyContent={'center'} margin={'2em 0'}>
           <Input placeholder="I'm looking for a recipe on how to make . . ." maxWidth={'md'} onChange={(e)=> setQuery(e.target.value)}></Input>
-          <Button leftIcon={<FaSearch/>} size={'sm'} variant='solid' colorScheme={"linkedin"} minWidth={'150px'} onClick={handleSearch}> Search </Button>
+          <Button leftIcon={<FaSearch/>} size={'md'} variant='solid' colorScheme={"pink"} minWidth={'150px'} onClick={handleSearch}> Search </Button>
         </HStack>
         {searchParam}
         {isLoading ? 
         <>
           <Text>Please Wait . . .</Text>
           <SearchResults_Skeleton></SearchResults_Skeleton>
-        </> 
+        </>  
         :  
         <>
          {foodResult && <SearchResults results={foodResult}></SearchResults >}

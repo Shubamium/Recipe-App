@@ -5,10 +5,10 @@ export default function SearchResults_Skeleton({ results }) {
   let placeholder = [1,2,3,4,5,6,7,8,9];
   return (
     <SimpleGrid columns={3} my={'2'} justifyItems={'center'} mx={'auto'} gap={'2em'} maxWidth={'5xl'}>
-        {placeholder.map((a)=>{
+        {placeholder.map((a,index)=>{
             return (
-               <Skeleton>
-                 <Card key={a} mx={'2em'} shadow={'xl'} outline={'2px solid teal'} w={'100%'} bg={'teal.50'}>
+               <Skeleton key={a}>
+                 <Card  mx={'2em'} shadow={'xl'} outline={'2px solid teal'} w={'100%'} bg={'teal.50'}>
                     <CardHeader padding={'3'}>
                         <Skeleton>
                             <Heading fontSize={'1rem'}textAlign={'left'}>lorem120lorem120lorem120</Heading>

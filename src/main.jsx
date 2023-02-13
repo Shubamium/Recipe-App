@@ -7,7 +7,8 @@ import '@fontsource/open-sans'
 
 import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from 'react-router-dom'
 import ErrorPage from './page/ErrorPage'
-
+import Food from './page/Food'
+import FoodLoader from './page/FoodLoader'
 const theme = extendTheme({
     fonts:{
       heading: `'Open Sans', sans-serif`,
@@ -19,10 +20,16 @@ const router = createBrowserRouter(
     {
       path:'/',
       element: <Home/>,
-      errorElement: <ErrorPage/>
+      errorElement: <ErrorPage/>,
+    },
+    {
+      path:'food/:foodId',
+      element:<Food/>,
+      loader:FoodLoader
     }
   ]
 );
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
       <ChakraProvider theme={theme}>
