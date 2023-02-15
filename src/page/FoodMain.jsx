@@ -19,9 +19,11 @@ export default function FoodMain({food}) {
     return res;
   }
   let ingre = getIngredients();
+  let actualLink = food.strYoutube.split('=');
+  let youtubeLink = `https://www.youtube.com/embed/${actualLink[actualLink.length - 1]}`;
   return (
      <Box p={10}>
-         <Flex width={'100%'} gap={'1em'} wrap={'wrap'}>
+         <Flex width={'100%'} gap={'1em'} wrap={{base:'wrap',lg:'nowrap'}} flexShrink={'0.5'}>
             <Card maxW={{base:'initial',xl:'30vw'}} border={'3px solid purple'} p={0} m={0}>
                 <CardHeader p2={2} >
                     <Heading>
@@ -29,25 +31,28 @@ export default function FoodMain({food}) {
                     </Heading>
                     <Text>{food.strCategory} - {food.strArea}</Text>
                 </CardHeader>
-                <CardBody pt={0}>
+                <CardBody pt={0} fontSize={'.8rem'}>
                     Instructions:
                     <p>
                         {food.strInstructions}
                     </p>
                 </CardBody>     
                 <CardFooter>
-                    <Button variant={'solid'} w={'100%'} mx={'0 auto'} colorScheme={'pink'}>Recipe Source!</Button>    
+                    <Button variant={'solid'} w={'100%'} mx={'0 auto'} colorScheme={'pink'}
+                    onClick={()=>{
+                        window.open(food.strSource,'_blank');
+                    }}>Recipe Source!</Button>    
                 </CardFooter>   
             </Card>                
                 
-            <Card flexGrow={1}  minWidth={'450px'}>
+            <Card flexGrow={2}  minWidth={'350px'}>
                 <CardHeader>
                     <Heading fontWeight={'bold'} fontSize={'1.2rem'} color={'pink.800'}>Watch the Tutorial</Heading>
                 </CardHeader>
                 <Divider h={'2px'} color={'pink.700'}></Divider>
-                <CardBody>
+                <CardBody minW={'30vw'}>
                     <Box shadow={'xl'}>
-                        <iframe width="100%" height={'350px'} src="https://www.youtube.com/embed/pOJEmDBgtSk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullscreen></iframe>
+                        <iframe width="100%" height={'350px'} src={youtubeLink} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullscreen></iframe>
                     </Box>
                 </CardBody>
             </Card>

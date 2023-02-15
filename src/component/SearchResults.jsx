@@ -3,7 +3,9 @@ import { FaArrowAltCircleRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 export default function SearchResults({ results }) {
-    
+    if(!results){
+        return <>No Recipe exist</>;
+    }
   return (
     <SimpleGrid columns={3} my={'2'} justifyItems={'center'} mx={'auto'} gap={'2em'} maxWidth={'5xl'}>
         {results.map((a)=>{
