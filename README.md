@@ -8,5 +8,4 @@ Library Included in this project:
 > Axios (Fetching)
 > Chakra UI (Styling)
 > React Router (Page Routing)
-
 ```
