@@ -90,13 +90,12 @@ function Ingredient({recipe,index}) {
     }
     return (
             <Tr _hover={{cursor:'pointer'}} onClick={handleClick} textDecoration={isDone ? 'line-through' : 'none'} scale={isDone ? '1.2' : '1'} bg={index % 2 === 0 ? 'transparent' : 'pink.100'}>
-                
                 <Th>
-                <Flex gap={'1em'}>
-                    <Checkbox colorScheme="purple" background={'blackAlpha.100'} isChecked={isDone}></Checkbox>
-                    <Text>{recipe.ingredient}</Text>
-                </Flex>
-                    </Th>
+                    <Flex gap={'1em'}>
+                        <Checkbox colorScheme="purple" background={'blackAlpha.100'} isChecked={isDone}></Checkbox>
+                        <Text>{recipe.ingredient}</Text>
+                    </Flex>
+                </Th>
                 <Th>{recipe.measure}</Th>
             </Tr>
     );
