@@ -1,4 +1,5 @@
-import { Card, CardBody, SimpleGrid,Flex, CardHeader, Heading, Divider,Box, Text, Table, TableCaption,Button, Thead, Tr, Th,Td, Tbody, CardFooter } from "@chakra-ui/react";
+import { Card, CardBody, SimpleGrid,Flex, CardHeader, Heading, Divider,Box, Text, Table, TableCaption,Button, Thead, Tr, Th,Td, Tbody, CardFooter, Checkbox } from "@chakra-ui/react";
+import { useState } from "react";
 
 export default function FoodMain({food}) {
   
@@ -60,20 +61,18 @@ export default function FoodMain({food}) {
         <Divider m={5}></Divider>
         <Box borderRadius={'sm'} border={'3px solid purple'} p={5} >
             <Table colorScheme={'pink'} variant="striped" size={'lg'} >
-                <Thead >
-                    <TableCaption fontSize={'1.5rem'} w={'100%'} fontWeight={'600'}>Here's what you need!</TableCaption>
+                <Thead w={'100%'} >
+                    <TableCaption fontSize={'1.5rem'} width={'100%'} textAlign={'left'} fontWeight={'600'}>Here's what you need!</TableCaption>
+                    <Text px={5}>Click to mark as complete!</Text>
                     <Tr bg={'pink.400'}>
                         <Th>Ingredient</Th>
                         <Th>Measurement</Th> 
                     </Tr>
                 </Thead>
-                <Tbody fontSize={'.8rem'}>
+                <Tbody fontSize={'.8rem'} >
                     {ingre.map((recipe,index)=>{
                         return (
-                            <Tr bg={index % 2 === 0 ? 'transparent' : 'pink.100'}>
-                                <Th>{recipe.ingredient}</Th>
-                                <Th>{recipe.measure}</Th>
-                            </Tr>
+                           <Ingredient recipe={recipe}   index={index}  />
                         )
                     })}
                 </Tbody>
@@ -81,4 +80,24 @@ export default function FoodMain({food}) {
         </Box>
      </Box>
   )
+}
+
+function Ingredient({recipe,index}) {
+    const [isDone,setIsDone] = useState(false);
+
+    function handleClick(){
+        setIsDone((prev) => !prev)
+    }
+    return (
+            <Tr _hover={{cursor:'pointer'}} onClick={handleClick} textDecoration={isDone ? 'line-through' : 'none'} scale={isDone ? '1.2' : '1'} bg={index % 2 === 0 ? 'transparent' : 'pink.100'}>
+                
+                <Th>
+                <Flex gap={'1em'}>
+                    <Checkbox colorScheme="purple" background={'blackAlpha.100'} isChecked={isDone}></Checkbox>
+                    <Text>{recipe.ingredient}</Text>
+                </Flex>
+                    </Th>
+                <Th>{recipe.measure}</Th>
+            </Tr>
+    );
 }
